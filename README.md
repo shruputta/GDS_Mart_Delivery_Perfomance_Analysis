@@ -20,7 +20,6 @@ architecture diagram:
 
 
 
-![KPI](https://github.com/shruputta/GDS_Mart_Delivery_Perfomance_Analysis/assets/21563334/7e9d5ba2-7999-408d-987a-79b5898ff326)
 
 ![Overview](https://github.com/shruputta/GDS_Mart_Delivery_Perfomance_Analysis/assets/21563334/ef45395f-0c09-4677-a9c1-7e58e58dd04d)
 
