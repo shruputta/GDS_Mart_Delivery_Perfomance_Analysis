@@ -16,7 +16,9 @@ Mr. Analyst is the data analyst in the supply chain team who joined GDS Mart rec
 
 architecture diagram:
 
-![image](https://github.com/shruputta/GDS_Mart_Delivery_Perfomance_Analysis/assets/21563334/091ce718-a0ae-4d32-b3ab-fdccc3f5a162)
+![KPI](https://github.com/shruputta/GDS_Mart_Delivery_Perfomance_Analysis/assets/21563334/04a6c891-2d3e-471f-9e6c-59a65e1a7a28)
+
+
 
 ![KPI](https://github.com/shruputta/GDS_Mart_Delivery_Perfomance_Analysis/assets/21563334/7e9d5ba2-7999-408d-987a-79b5898ff326)
 
