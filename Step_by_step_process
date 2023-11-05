@@ -1,0 +1,130 @@
+
+Using Python:
+Data Preparation:
+Load the provided CSV files into Python using Pandas.
+Merge/join tables as necessary to combine relevant data.
+Perform data cleaning and handle missing values.
+
+Calculating Metrics:
+Calculate the required metrics as specified in the metric list. Create new columns in your DataFrames to store these metrics.
+.checking Null value -python 
+.checking Data types -python 
+
+#importing pandas
+import pandas as pd
+
+# Importing data set 
+dim_customers_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\dim_customers.csv")
+dim_date_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\dim_date.csv")
+dim_products_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\dim_products.csv")
+dim_targets_orders_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\dim_targets_orders.csv")
+fact_order_lines_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\fact_order_lines.csv")
+fact_order_aggregate_df=pd.read_csv("D:\\Da_Bootcamp\\Hackathon_DA_Noob_1.0\\Raw Data\\fact_orders_aggregate.csv")
+
+
+
+
+#RENAME columns simlar to fact_order_line table
+
+fact_order_aggregate_df=fact_order_aggregate_df.rename(columns={'on_time':'On Time','in_full':'In Full','otif':'On Time In Full'})
+
+ 
+
+
+
+ 
+
+ 
+
+
+Data Visualization:
+Use Python libraries 
+Create various plots and charts to represent your calculated metrics.
+For example, you can create bar charts for "On Time Delivery %," "In Full Delivery %," and "On Time In Full %."
+Export Data:
+Export the visualized data or insights to Excel if you want to create reports or dashboards in Excel.
+Using Excel:
+Data Import:
+Import the cleaned and calculated data from Python into Excel.
+You can use the "Data" tab in Excel to import data from external sources, such as CSV files.
+Data Analysis:
+Perform additional data analysis in Excel, if needed.
+Create Pivot Tables, use formulas, or apply filters to explore the data further.
+Renamed fact_order_lines table: to In FUll ,On Time ,On Time In Full which is similar to fact-order_aggregate
+ 
+
+
+ 
+
+
+
+Arrange date ->Dim_date table - 
+ 
+
+Using Power BI:
+Data Connection:
+Connect Power BI to the cleaned and calculated data from Excel or directly from your Python analysis.
+
+
+Data Modeling:
+Create relationships between tables in Power BI's data model.
+Define measures and calculated columns to represent the metrics from your metric list.
+
+ 
+
+
+
+Create calculated columns and measures as per the provided metrics list:
+
+1.Total Orders Lines:
+Total Orders Lines = DISTINCTCOUNT(fact_orders_Lines [order_id])
+2. Line Fill Rate: Line Fill Rate (LIFR %) is a crucial metric that assesses the percentage of order lines that are shipped in full quantity out of the total order lines.
+LIFR % = DIVIDE(CALCULATE(COUNTROWS(fact_order_lines),fact_order_lines[In Full]=1),COUNTROWS(fact_order_lines),0)*100
+
+
+3. The Volume Fill Rate (VOFR %) is a key supply chain metric that evaluates the percentage of the total quantity of products shipped in relation to the total quantity of products ordered. This metric helps you assess how well your supply chain is at meeting the volume (quantity) requirements of customer orders.
+
+VOFR % = SUM(fact_order_lines[delivery_qty])/SUM(fact_order_lines[order_qty])*100
+
+4. Total Orders: Total Orders" metric typically represents the total count of customer orders within a given context. In your case, it is calculated based on the fact_orders_aggregate table.
+Total Orders = COUNTROWS(fact_orders_aggregate)
+
+5. "On Time Delivery %" (OT %) is a key metric that measures the percentage of orders that were delivered on time out of the total number of orders.
+
+On Time Delivery % = DIVIDE(COUNTROWS(FILTER(fact_orders_aggregate,fact_orders_aggregate[On Time]=1)),COUNTROWS(fact_orders_aggregate))*100
+
+A 59.03% On Time Delivery % (OT %) means that approximately 59.03% of the total orders were delivered on time out of the total number of orders. This metric indicates the percentage of orders that met their delivery time commitments.
+
+6. The "In Full Delivery %" (IF %) is a metric that measures the percentage of orders that were delivered in full quantity out of the total number of orders
+
+In Full Delivery % = DIVIDE(COUNTROWS(FILTER(fact_orders_aggregate,fact_orders_aggregate[In Full]=1)),COUNTROWS(fact_orders_aggregate))*100
+
+A 52.78% In Full Delivery % (IF %) means that approximately 52.78% of the total orders were delivered in full quantity out of the total number of orders. This metric indicates the percentage of orders that were completely fulfilled,
+
+7. The "On Time In Full %" (OTIF %) is a crucial supply chain metric that evaluates the percentage of orders that were delivered both on time and in full quantity out of the total number of orders.
+
+On Time In Full Delivery % = DIVIDE(COUNTROWS(FILTER(fact_orders_aggregate,fact_orders_aggregate[In Full]=1 &&fact_orders_aggregate[On Time]=1)),COUNTROWS(fact_orders_aggregate))*100
+
+29.02
+8.On Time Target = AVERAGE(dim_targets_orders[ontime_target%])
+
+9.In Full Target:
+In Full Target = AVERAGE(dim_targets_orders[infull_target%])
+
+
+10.On Time In Full Target
+On Time In Full Target = AVERAGE(dim_targets_orders[otif_target%])
+
+
+Data Visualization:
+
+•	Card View:To represent 10 Kpis 
+•	Card:To represent Target
+•	Bar Chart:Quantity ordered by category VS city
+•	Matatrix chat:to represent customers with respect to In full Delivery,On Time Delivery,On time In full Deliver
+
+•	Slicer :Represent date
+•	3 Bar chart:  on time On Time In Full Delivery% vs  On Time In Full DeliveryTarget%
+•	Full Delivery % Vs Full Target %
+•	On Time Delivery % VS On Time Target % 
+•	Matrix chartcustomer vs :max delivery delayed
